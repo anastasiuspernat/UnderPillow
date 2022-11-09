@@ -60,9 +60,9 @@ struct ContentView: View {
                 }, label: {
                     Text("Select folders")
                 }).padding()
-                Text("Support, more information:").padding()
-                Text("Anastasiy Safari")
-                Link("https://anastasiy.com", destination: URL(string: "https://anastasiy.com")!)
+                Text("Support, more information:").font(.system(size: 11))
+                Text("Anastasiy Safari").font(.system(size: 11))
+                Link("https://anastasiy.com", destination: URL(string: "https://anastasiy.com")!).font(.system(size: 11))
             }
         }
     }
