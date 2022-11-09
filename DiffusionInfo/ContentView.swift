@@ -21,10 +21,11 @@ struct ContentView: View {
         HStack {
             List(demoData, id: \.self, selection: $selectKeeper){ name in
                 Text(name)
-            }.frame(maxWidth: .infinity)
-    
+            }
+                .frame(maxWidth: .infinity)
             VStack {
-                Text("Click on the button below to select folders with images").padding()
+                Text("Click on the button below to select folders with images")
+                    .padding()
                 Button(action: {
                                 
                     let dialog = NSOpenPanel();
@@ -37,7 +38,6 @@ struct ContentView: View {
                         dialog.allowsMultipleSelection = false
 
                         if (dialog.runModal() == NSApplication.ModalResponse.OK) {
-                            
                             
                             let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.DiffusionInfoXPC")
                             connection.remoteObjectInterface = NSXPCInterface(with: DiffusionInfoXPCProtocol.self)
@@ -59,10 +59,16 @@ struct ContentView: View {
                         }
                 }, label: {
                     Text("Select folders")
-                }).padding()
-                Text("Support, more information:").font(.system(size: 11))
-                Text("Anastasiy Safari").font(.system(size: 11))
-                Link("https://anastasiy.com", destination: URL(string: "https://anastasiy.com")!).font(.system(size: 11))
+                })
+                    .padding()
+                Spacer()
+                        .frame(height: 40)
+                Text("Support, more information:")
+                        .font(.system(size: 11))
+                Text("Anastasiy Safari")
+                        .font(.system(size: 11))
+                Link("https://anastasiy.com", destination: URL(string: "https://anastasiy.com")!)
+                        .font(.system(size: 11))
             }
         }
     }
