@@ -1,3 +1,4 @@
+![](https://github.com/anastasiuspernat/DiffusionInfo/blob/main/DiffusionInfo/Assets.xcassets/AppIcon.appiconset/icon_256x256.png?raw=true)
 # DiffusionInfo
 A macOS Finder right-click menu extension that displays diffusion metadata
 
