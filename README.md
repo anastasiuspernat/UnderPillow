@@ -8,7 +8,7 @@ A macOS Finder right-click menu extension that displays diffusion metadata
 - Supports information from Webui from AUTOMATIC1111, InvokeUI etc 
 
 # Installation
-- Download from releases - notarized and signed
+- Download from releases 
 - Move from Downloads to Applications
 - Run app and choose folders you keep your images in
 
