@@ -140,6 +140,7 @@ class FinderSync: FIFinderSync {
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0))
             }
         }
+        
 
         // This won't work
 //        if let imageSource = CGImageSourceCreateWithURL(item as CFURL, nil) {
@@ -158,7 +159,10 @@ class FinderSync: FIFinderSync {
 //        }
         if (UTTypeConformsTo(uti as CFString, kUTTypeImage)) {
             menu.addItem(withTitle: "Diffusion Info", action: #selector(sampleAction(_:)), keyEquivalent: "")
-            menu.addItem(withTitle: diffusionInfo, action: #selector(sampleAction(_:)), keyEquivalent: "")
+            let lines = diffusionInfo.split(whereSeparator: \.isNewline)
+            for line in lines {
+                menu.addItem(withTitle: String(line), action: #selector(sampleAction(_:)), keyEquivalent: "")
+            }
         }
         
         return menu
