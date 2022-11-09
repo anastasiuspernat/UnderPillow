@@ -8,6 +8,8 @@ A macOS Finder right-click menu extension that displays diffusion metadata
 - Needs python installed on your macOS (will remove this dependancy)
 - Supports information from **Webui from AUTOMATIC1111, InvokeUI** etc 
 
+![](https://github.com/anastasiuspernat/DiffusionInfo/blob/main/DiffusionInfo/Assets.xcassets/AppIcon.appiconset/icon_256x256.png?raw=true)
+
 # Installation
 - Download from releases 
 - Move from Downloads to Applications
