@@ -12,10 +12,7 @@ import Foundation
 // This object implements the protocol which we have defined. It provides the actual behavior for the service. It is 'exported' by the service to make it available to the process hosting the service over an NSXPCConnection.
 class DiffusionInfoXPC: NSObject, DiffusionInfoXPCProtocol {
     
-    var folders: NSDictionary
-    
     override init() {
-        self.folders = [:]
         super.init()
     }
 
@@ -43,19 +40,34 @@ class DiffusionInfoXPC: NSObject, DiffusionInfoXPCProtocol {
     }
 
     
-    func getFolders(withReply reply: @escaping (NSDictionary) -> Void) {
-            let defaults = UserDefaults.standard
+    func getFolders(withReply reply: @escaping (String) -> Void) {
+//            let defaults = UserDefaults.standard
 
-            let defaultsDomain = defaults.persistentDomain(forName: "Crispy-Driven-Pixels.DiffusionInfoXPC") as? [String: AnyHashable] ?? [:]
-            let folderSettings =  defaultsDomain["folderSettings"]
-            reply(self.folders)
+        let defaults = UserDefaults.standard // UserDefaults(suiteName: "Crispy-Driven-Pixels.DiffusionInfoXPC")?
+        let folderSettings = ["folderSettings":defaults.object(forKey: "folderSettings")]
+
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: folderSettings,
+            options: []) {
+                let theJSONText = String(data: theJSONData,
+                                       encoding: .utf8)
+            reply(theJSONText!)
+        } else
+        {
+            reply("{}")
         }
         
-        func setFolders(_ folders_dict: NSDictionary, withReply reply: @escaping (Bool) -> Void) {
-            let defaults = UserDefaults.standard
-            var defaultsDomain = defaults.persistentDomain(forName: "Crispy-Driven-Pixels.DiffusionInfoXPC") as? [String: AnyHashable] ?? [:]
-            defaultsDomain["folderSettings"] = folders_dict["folderSettings"] as! URL
-        }
+    }
+        
+    func setFolders(_ folders_dictJSON: String, withReply reply: @escaping (Bool) -> Void) {
+        
+        if let data = folders_dictJSON.data(using: .utf8) {
+                if let folders_dict: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
+                    let userDefaults = UserDefaults.standard // UserDefaults(suiteName: "Crispy-Driven-Pixels.DiffusionInfoXPC")
+                    userDefaults.set(folders_dict["folderSettings"], forKey:"folderSettings")
+                }
+            }
+    }
         
 }
 

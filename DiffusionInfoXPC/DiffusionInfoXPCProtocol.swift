@@ -12,8 +12,8 @@ import Foundation
 @objc public protocol DiffusionInfoXPCProtocol {
     // func upperCaseString(_ string: String, withReply reply: @escaping (String) -> Void)
     
-    func getFolders(withReply reply: @escaping (NSDictionary) -> Void)
-    func setFolders(_ folders: NSDictionary, withReply reply: @escaping (Bool) -> Void)
+    func getFolders(withReply reply: @escaping (String) -> Void)
+    func setFolders(_ folders: String, withReply reply: @escaping (Bool) -> Void)
     func getDiffusionData(withReply filePath:String, reply: @escaping (String) -> Void)
 }
         

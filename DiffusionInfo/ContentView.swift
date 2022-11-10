@@ -47,11 +47,25 @@ struct ContentView: View {
                                 print("Received error:", error)
                             } as? DiffusionInfoXPCProtocol
 
-                            service?.setFolders( ["folderSettings":dialog.url?.path] ) { response in
-                                print("Response from XPC service(2):", response)
+                            var imageDataDict: NSMutableDictionary = [:]//= ["image": "image"]
+                            
+                            imageDataDict = ["folderSettings":[dialog.url?.path]]
+                            
+                            if let theJSONData = try? JSONSerialization.data(
+                                withJSONObject: imageDataDict,
+                                options: []) {
+
+                                    let theJSONText = String(data: theJSONData,
+                                                           encoding: .utf8)
+
+                                service?.setFolders( theJSONText! ) { response in
+                                    print("Response from XPC service(2):", response)
+                                }
+
+                                DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("FoldersChanged"), object: theJSONText, userInfo: nil, options: [.deliverImmediately])
                             }
 
-                            DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("FoldersChanged"), object: Bundle.main.bundleIdentifier, userInfo: nil, options: [.deliverImmediately])
+                            
 
                         } else {
                             // User clicked on "Cancel"

@@ -12,15 +12,34 @@ import Foundation
 
 class FinderSync: FIFinderSync {
                     
-    var myFolderURL = URL(fileURLWithPath: "~/Pictures")
-    
     var currentFile: URL?
 
     override init() {
         super.init()
         
-        // Set up the directory we are syncing.
-        FIFinderSyncController.default().directoryURLs = [self.myFolderURL]
+        FIFinderSyncController.default().directoryURLs = []
+
+        let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.DiffusionInfoXPC")
+        connection.remoteObjectInterface = NSXPCInterface(with: DiffusionInfoXPCProtocol.self)
+        connection.resume()
+        let service = connection.remoteObjectProxyWithErrorHandler { error in
+            NSLog("Received error: \(error)")
+        } as? DiffusionInfoXPCProtocol
+
+        service?.getFolders() { response in
+            
+            if let data = response.data(using: .utf8) {
+                    if let dict: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
+                        var folderUrls: [URL] = []
+                        let folderPaths: [String] = dict["folderSettings"] as? [String] ?? []
+                        for folderStr in folderPaths
+                        {
+                            folderUrls.append(URL(fileURLWithPath:folderStr))
+                        }
+                        FIFinderSyncController.default().directoryURLs = Set(folderUrls)
+                    }
+                }
+        }
 
         // Set up images for our badge identifiers. For demonstration purposes, this uses off-the-shelf images.
         FIFinderSyncController.default().setBadgeImage(NSImage(named: NSImage.colorPanelName)!, label: "Status One" , forBadgeIdentifier: "One")
@@ -34,50 +53,46 @@ class FinderSync: FIFinderSync {
     }
     
     @objc func foldersChanged(_ notification: Notification ) {
-        let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.DiffusionInfoXPC")
-        connection.remoteObjectInterface = NSXPCInterface(with: DiffusionInfoXPCProtocol.self)
-        connection.resume()
-        let service = connection.remoteObjectProxyWithErrorHandler { error in
-            NSLog("Received error: \(error)")
-        } as? DiffusionInfoXPCProtocol
 
-        service?.getFolders() { response in
-            FIFinderSyncController.default().directoryURLs = [self.myFolderURL]
-        }
-
+        let folderSettingsJSON: String = notification.object as! String
         
+        if let data = folderSettingsJSON.data(using: .utf8) {
+                if let foldersSettings: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
+                    // TODO: Refresh folderURLs
+                }
+            }
     }
     
     
     override func beginObservingDirectory(at url: URL) {
         // The user is now seeing the container's contents.
         // If they see it in more than one view at a time, we're only told once.
-        NSLog("beginObservingDirectoryAtURL: %@", url.path as NSString)
+//        NSLog("beginObservingDirectoryAtURL: %@", url.path as NSString)
     }
     
     
     override func endObservingDirectory(at url: URL) {
         // The user is no longer seeing the container's contents.
-        NSLog("endObservingDirectoryAtURL: %@", url.path as NSString)
+//        NSLog("endObservingDirectoryAtURL: %@", url.path as NSString)
     }
     
     override func requestBadgeIdentifier(for url: URL) {
-        NSLog("requestBadgeIdentifierForURL: %@", url.path as NSString)
+//        NSLog("requestBadgeIdentifierForURL: %@", url.path as NSString)
         
         // For demonstration purposes, this picks one of our two badges, or no badge at all, based on the filename.
-        let whichBadge = abs(url.path.hash) % 3
-        let badgeIdentifier = ["", "One", "Two"][whichBadge]
-        FIFinderSyncController.default().setBadgeIdentifier(badgeIdentifier, for: url)
+//        let whichBadge = abs(url.path.hash) % 3
+//        let badgeIdentifier = ["", "One", "Two"][whichBadge]
+//        FIFinderSyncController.default().setBadgeIdentifier(badgeIdentifier, for: url)
     }
     
     // MARK: - Menu and toolbar item support
     
     override var toolbarItemName: String {
-        return "FinderSy"
+        return "DiffusionInfo"
     }
     
     override var toolbarItemToolTip: String {
-        return "FinderSy: Click the toolbar item for a menu."
+        return "DiffusionInfo: Click the toolbar item for a menu."
     }
     
     override var toolbarItemImage: NSImage {
@@ -104,6 +119,7 @@ class FinderSync: FIFinderSync {
     // Note that this also can produce menu items for Finder toolbar
     override func menu(for menuKind: FIMenuKind) -> NSMenu? {
         // Produce a menu for the extension.
+
         guard menuKind == .contextualMenuForItems else {
                     return nil
         }
