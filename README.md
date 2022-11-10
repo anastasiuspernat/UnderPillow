@@ -11,9 +11,9 @@ A macOS Finder right-click menu extension that displays diffusion metadata
 ![](https://github.com/anastasiuspernat/UnderPillow/blob/main/Screenshot.jpg?raw=true)
 
 # Installation
-- Download from releases 
-- Move from Downloads to Applications
-- Run app and choose folders you keep your images in
-- Go to System Preferences -> Extensions -> Finder Extensions and enable "UnderPillow Finder" 
+- **Download** from releases 
+- Move from **Downloads to Applications**
+- Run app and **choose folders** you keep your images in
+- Go to System Preferences -> Extensions -> Finder Extensions and enable **UnderPillow Finder**
 
 WIP
