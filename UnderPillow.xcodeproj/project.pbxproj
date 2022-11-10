@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD180E39291AD38500E23D59 /* DiffusionInfoXPCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E38291AD38500E23D59 /* DiffusionInfoXPCDelegate.swift */; };
+		DD180E39291AD38500E23D59 /* UnderPillowXPCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E38291AD38500E23D59 /* UnderPillowXPCDelegate.swift */; };
 		DD180E3B291AD38500E23D59 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E3A291AD38500E23D59 /* main.swift */; };
-		DD180E3F291AD38500E23D59 /* DiffusionInfoXPC.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = DD180E34291AD38500E23D59 /* DiffusionInfoXPC.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DD180E44291AF1EA00E23D59 /* DiffusionInfoXPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E36291AD38500E23D59 /* DiffusionInfoXPCProtocol.swift */; };
-		DD180E45291AF1EA00E23D59 /* DiffusionInfoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E37291AD38500E23D59 /* DiffusionInfoXPC.swift */; };
-		DD180E46291AF1EA00E23D59 /* DiffusionInfoXPCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E38291AD38500E23D59 /* DiffusionInfoXPCDelegate.swift */; };
-		DD180E47291AF41D00E23D59 /* DiffusionInfoXPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E36291AD38500E23D59 /* DiffusionInfoXPCProtocol.swift */; };
-		DD180E48291AF41D00E23D59 /* DiffusionInfoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E37291AD38500E23D59 /* DiffusionInfoXPC.swift */; };
-		DD180E49291AF8B800E23D59 /* DiffusionInfoXPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E36291AD38500E23D59 /* DiffusionInfoXPCProtocol.swift */; };
-		DD180E4A291AF8B800E23D59 /* DiffusionInfoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E37291AD38500E23D59 /* DiffusionInfoXPC.swift */; };
-		DD180E4F291B14DF00E23D59 /* DiffusionInfoXPC.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = DD180E34291AD38500E23D59 /* DiffusionInfoXPC.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DDF18A022919D4A700BC2201 /* DiffusionInfoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF18A012919D4A700BC2201 /* DiffusionInfoApp.swift */; };
+		DD180E3F291AD38500E23D59 /* UnderPillowXPC.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = DD180E34291AD38500E23D59 /* UnderPillowXPC.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DD180E44291AF1EA00E23D59 /* UnderPillowXPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E36291AD38500E23D59 /* UnderPillowXPCProtocol.swift */; };
+		DD180E45291AF1EA00E23D59 /* UnderPillowXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E37291AD38500E23D59 /* UnderPillowXPC.swift */; };
+		DD180E46291AF1EA00E23D59 /* UnderPillowXPCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E38291AD38500E23D59 /* UnderPillowXPCDelegate.swift */; };
+		DD180E47291AF41D00E23D59 /* UnderPillowXPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E36291AD38500E23D59 /* UnderPillowXPCProtocol.swift */; };
+		DD180E48291AF41D00E23D59 /* UnderPillowXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E37291AD38500E23D59 /* UnderPillowXPC.swift */; };
+		DD180E49291AF8B800E23D59 /* UnderPillowXPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E36291AD38500E23D59 /* UnderPillowXPCProtocol.swift */; };
+		DD180E4A291AF8B800E23D59 /* UnderPillowXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD180E37291AD38500E23D59 /* UnderPillowXPC.swift */; };
+		DD180E4F291B14DF00E23D59 /* UnderPillowXPC.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = DD180E34291AD38500E23D59 /* UnderPillowXPC.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DDF18A022919D4A700BC2201 /* UnderPillowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF18A012919D4A700BC2201 /* UnderPillowApp.swift */; };
 		DDF18A042919D4A700BC2201 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF18A032919D4A700BC2201 /* ContentView.swift */; };
 		DDF18A062919D4AA00BC2201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF18A052919D4AA00BC2201 /* Assets.xcassets */; };
 		DDF18A092919D4AA00BC2201 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF18A082919D4AA00BC2201 /* Preview Assets.xcassets */; };
 		DDF18A172919D4CC00BC2201 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF18A162919D4CC00BC2201 /* FinderSync.swift */; };
-		DDF18A1C2919D4CC00BC2201 /* DiffusionInfo Finder.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DDF18A142919D4CC00BC2201 /* DiffusionInfo Finder.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DDF18A1C2919D4CC00BC2201 /* UnderPillow Finder.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DDF18A142919D4CC00BC2201 /* UnderPillow Finder.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,21 +32,21 @@
 			containerPortal = DDF189F62919D4A700BC2201 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DD180E33291AD38500E23D59;
-			remoteInfo = DiffusionInfoXPC;
+			remoteInfo = UnderPillowXPC;
 		};
 		DD180E4C291B14AE00E23D59 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DDF189F62919D4A700BC2201 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DD180E33291AD38500E23D59;
-			remoteInfo = DiffusionInfoXPC;
+			remoteInfo = UnderPillowXPC;
 		};
 		DDF18A1A2919D4CC00BC2201 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DDF189F62919D4A700BC2201 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DDF18A132919D4CC00BC2201;
-			remoteInfo = "DiffusionInfo Finder";
+			remoteInfo = "UnderPillow Finder";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -57,7 +57,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
 			dstSubfolderSpec = 16;
 			files = (
-				DD180E3F291AD38500E23D59 /* DiffusionInfoXPC.xpc in Embed XPC Services */,
+				DD180E3F291AD38500E23D59 /* UnderPillowXPC.xpc in Embed XPC Services */,
 			);
 			name = "Embed XPC Services";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,7 +68,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
 			dstSubfolderSpec = 16;
 			files = (
-				DD180E4F291B14DF00E23D59 /* DiffusionInfoXPC.xpc in CopyFiles */,
+				DD180E4F291B14DF00E23D59 /* UnderPillowXPC.xpc in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +78,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				DDF18A1C2919D4CC00BC2201 /* DiffusionInfo Finder.appex in Embed App Extensions */,
+				DDF18A1C2919D4CC00BC2201 /* UnderPillow Finder.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,22 +86,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DD180E34291AD38500E23D59 /* DiffusionInfoXPC.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = DiffusionInfoXPC.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD180E36291AD38500E23D59 /* DiffusionInfoXPCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionInfoXPCProtocol.swift; sourceTree = "<group>"; };
-		DD180E37291AD38500E23D59 /* DiffusionInfoXPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionInfoXPC.swift; sourceTree = "<group>"; };
-		DD180E38291AD38500E23D59 /* DiffusionInfoXPCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionInfoXPCDelegate.swift; sourceTree = "<group>"; };
+		DD180E34291AD38500E23D59 /* UnderPillowXPC.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = UnderPillowXPC.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD180E36291AD38500E23D59 /* UnderPillowXPCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderPillowXPCProtocol.swift; sourceTree = "<group>"; };
+		DD180E37291AD38500E23D59 /* UnderPillowXPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderPillowXPC.swift; sourceTree = "<group>"; };
+		DD180E38291AD38500E23D59 /* UnderPillowXPCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderPillowXPCDelegate.swift; sourceTree = "<group>"; };
 		DD180E3A291AD38500E23D59 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		DD180E3C291AD38500E23D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DDF189FE2919D4A700BC2201 /* DiffusionInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiffusionInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDF18A012919D4A700BC2201 /* DiffusionInfoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionInfoApp.swift; sourceTree = "<group>"; };
+		DDF189FE2919D4A700BC2201 /* UnderPillow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnderPillow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDF18A012919D4A700BC2201 /* UnderPillowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderPillowApp.swift; sourceTree = "<group>"; };
 		DDF18A032919D4A700BC2201 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DDF18A052919D4AA00BC2201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDF18A082919D4AA00BC2201 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DDF18A0A2919D4AA00BC2201 /* DiffusionInfo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DiffusionInfo.entitlements; sourceTree = "<group>"; };
-		DDF18A142919D4CC00BC2201 /* DiffusionInfo Finder.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DiffusionInfo Finder.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDF18A0A2919D4AA00BC2201 /* UnderPillow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UnderPillow.entitlements; sourceTree = "<group>"; };
+		DDF18A142919D4CC00BC2201 /* UnderPillow Finder.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "UnderPillow Finder.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF18A162919D4CC00BC2201 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		DDF18A182919D4CC00BC2201 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DDF18A192919D4CC00BC2201 /* DiffusionInfo_Finder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DiffusionInfo_Finder.entitlements; sourceTree = "<group>"; };
+		DDF18A192919D4CC00BC2201 /* UnderPillow_Finder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UnderPillow_Finder.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,24 +129,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DD180E35291AD38500E23D59 /* DiffusionInfoXPC */ = {
+		DD180E35291AD38500E23D59 /* UnderPillowXPC */ = {
 			isa = PBXGroup;
 			children = (
-				DD180E36291AD38500E23D59 /* DiffusionInfoXPCProtocol.swift */,
-				DD180E37291AD38500E23D59 /* DiffusionInfoXPC.swift */,
-				DD180E38291AD38500E23D59 /* DiffusionInfoXPCDelegate.swift */,
+				DD180E36291AD38500E23D59 /* UnderPillowXPCProtocol.swift */,
+				DD180E37291AD38500E23D59 /* UnderPillowXPC.swift */,
+				DD180E38291AD38500E23D59 /* UnderPillowXPCDelegate.swift */,
 				DD180E3A291AD38500E23D59 /* main.swift */,
 				DD180E3C291AD38500E23D59 /* Info.plist */,
 			);
-			path = DiffusionInfoXPC;
+			path = UnderPillowXPC;
 			sourceTree = "<group>";
 		};
 		DDF189F52919D4A700BC2201 = {
 			isa = PBXGroup;
 			children = (
-				DDF18A002919D4A700BC2201 /* DiffusionInfo */,
-				DDF18A152919D4CC00BC2201 /* DiffusionInfo Finder */,
-				DD180E35291AD38500E23D59 /* DiffusionInfoXPC */,
+				DDF18A002919D4A700BC2201 /* UnderPillow */,
+				DDF18A152919D4CC00BC2201 /* UnderPillow Finder */,
+				DD180E35291AD38500E23D59 /* UnderPillowXPC */,
 				DDF189FF2919D4A700BC2201 /* Products */,
 				DDF18A242919EBF300BC2201 /* Frameworks */,
 			);
@@ -155,23 +155,23 @@
 		DDF189FF2919D4A700BC2201 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DDF189FE2919D4A700BC2201 /* DiffusionInfo.app */,
-				DDF18A142919D4CC00BC2201 /* DiffusionInfo Finder.appex */,
-				DD180E34291AD38500E23D59 /* DiffusionInfoXPC.xpc */,
+				DDF189FE2919D4A700BC2201 /* UnderPillow.app */,
+				DDF18A142919D4CC00BC2201 /* UnderPillow Finder.appex */,
+				DD180E34291AD38500E23D59 /* UnderPillowXPC.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DDF18A002919D4A700BC2201 /* DiffusionInfo */ = {
+		DDF18A002919D4A700BC2201 /* UnderPillow */ = {
 			isa = PBXGroup;
 			children = (
-				DDF18A012919D4A700BC2201 /* DiffusionInfoApp.swift */,
+				DDF18A012919D4A700BC2201 /* UnderPillowApp.swift */,
 				DDF18A032919D4A700BC2201 /* ContentView.swift */,
 				DDF18A052919D4AA00BC2201 /* Assets.xcassets */,
-				DDF18A0A2919D4AA00BC2201 /* DiffusionInfo.entitlements */,
+				DDF18A0A2919D4AA00BC2201 /* UnderPillow.entitlements */,
 				DDF18A072919D4AA00BC2201 /* Preview Content */,
 			);
-			path = DiffusionInfo;
+			path = UnderPillow;
 			sourceTree = "<group>";
 		};
 		DDF18A072919D4AA00BC2201 /* Preview Content */ = {
@@ -182,14 +182,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		DDF18A152919D4CC00BC2201 /* DiffusionInfo Finder */ = {
+		DDF18A152919D4CC00BC2201 /* UnderPillow Finder */ = {
 			isa = PBXGroup;
 			children = (
 				DDF18A162919D4CC00BC2201 /* FinderSync.swift */,
 				DDF18A182919D4CC00BC2201 /* Info.plist */,
-				DDF18A192919D4CC00BC2201 /* DiffusionInfo_Finder.entitlements */,
+				DDF18A192919D4CC00BC2201 /* UnderPillow_Finder.entitlements */,
 			);
-			path = "DiffusionInfo Finder";
+			path = "UnderPillow Finder";
 			sourceTree = "<group>";
 		};
 		DDF18A242919EBF300BC2201 /* Frameworks */ = {
@@ -202,9 +202,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DD180E33291AD38500E23D59 /* DiffusionInfoXPC */ = {
+		DD180E33291AD38500E23D59 /* UnderPillowXPC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DD180E40291AD38500E23D59 /* Build configuration list for PBXNativeTarget "DiffusionInfoXPC" */;
+			buildConfigurationList = DD180E40291AD38500E23D59 /* Build configuration list for PBXNativeTarget "UnderPillowXPC" */;
 			buildPhases = (
 				DD180E30291AD38500E23D59 /* Sources */,
 				DD180E31291AD38500E23D59 /* Frameworks */,
@@ -214,14 +214,14 @@
 			);
 			dependencies = (
 			);
-			name = DiffusionInfoXPC;
-			productName = DiffusionInfoXPC;
-			productReference = DD180E34291AD38500E23D59 /* DiffusionInfoXPC.xpc */;
+			name = UnderPillowXPC;
+			productName = UnderPillowXPC;
+			productReference = DD180E34291AD38500E23D59 /* UnderPillowXPC.xpc */;
 			productType = "com.apple.product-type.xpc-service";
 		};
-		DDF189FD2919D4A700BC2201 /* DiffusionInfo */ = {
+		DDF189FD2919D4A700BC2201 /* UnderPillow */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DDF18A0D2919D4AA00BC2201 /* Build configuration list for PBXNativeTarget "DiffusionInfo" */;
+			buildConfigurationList = DDF18A0D2919D4AA00BC2201 /* Build configuration list for PBXNativeTarget "UnderPillow" */;
 			buildPhases = (
 				DDF189FA2919D4A700BC2201 /* Sources */,
 				DDF189FB2919D4A700BC2201 /* Frameworks */,
@@ -235,16 +235,16 @@
 				DDF18A1B2919D4CC00BC2201 /* PBXTargetDependency */,
 				DD180E3E291AD38500E23D59 /* PBXTargetDependency */,
 			);
-			name = DiffusionInfo;
+			name = UnderPillow;
 			packageProductDependencies = (
 			);
-			productName = DiffusionInfo;
-			productReference = DDF189FE2919D4A700BC2201 /* DiffusionInfo.app */;
+			productName = UnderPillow;
+			productReference = DDF189FE2919D4A700BC2201 /* UnderPillow.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DDF18A132919D4CC00BC2201 /* DiffusionInfo Finder */ = {
+		DDF18A132919D4CC00BC2201 /* UnderPillow Finder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DDF18A1D2919D4CC00BC2201 /* Build configuration list for PBXNativeTarget "DiffusionInfo Finder" */;
+			buildConfigurationList = DDF18A1D2919D4CC00BC2201 /* Build configuration list for PBXNativeTarget "UnderPillow Finder" */;
 			buildPhases = (
 				DDF18A102919D4CC00BC2201 /* Sources */,
 				DDF18A112919D4CC00BC2201 /* Frameworks */,
@@ -256,11 +256,11 @@
 			dependencies = (
 				DD180E4D291B14AE00E23D59 /* PBXTargetDependency */,
 			);
-			name = "DiffusionInfo Finder";
+			name = "UnderPillow Finder";
 			packageProductDependencies = (
 			);
-			productName = "DiffusionInfo Finder";
-			productReference = DDF18A142919D4CC00BC2201 /* DiffusionInfo Finder.appex */;
+			productName = "UnderPillow Finder";
+			productReference = DDF18A142919D4CC00BC2201 /* UnderPillow Finder.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -284,7 +284,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DDF189F92919D4A700BC2201 /* Build configuration list for PBXProject "DiffusionInfo" */;
+			buildConfigurationList = DDF189F92919D4A700BC2201 /* Build configuration list for PBXProject "UnderPillow" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -300,9 +300,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DDF189FD2919D4A700BC2201 /* DiffusionInfo */,
-				DDF18A132919D4CC00BC2201 /* DiffusionInfo Finder */,
-				DD180E33291AD38500E23D59 /* DiffusionInfoXPC */,
+				DDF189FD2919D4A700BC2201 /* UnderPillow */,
+				DDF18A132919D4CC00BC2201 /* UnderPillow Finder */,
+				DD180E33291AD38500E23D59 /* UnderPillowXPC */,
 			);
 		};
 /* End PBXProject section */
@@ -338,10 +338,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD180E47291AF41D00E23D59 /* DiffusionInfoXPCProtocol.swift in Sources */,
-				DD180E48291AF41D00E23D59 /* DiffusionInfoXPC.swift in Sources */,
+				DD180E47291AF41D00E23D59 /* UnderPillowXPCProtocol.swift in Sources */,
+				DD180E48291AF41D00E23D59 /* UnderPillowXPC.swift in Sources */,
 				DD180E3B291AD38500E23D59 /* main.swift in Sources */,
-				DD180E39291AD38500E23D59 /* DiffusionInfoXPCDelegate.swift in Sources */,
+				DD180E39291AD38500E23D59 /* UnderPillowXPCDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,10 +349,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD180E49291AF8B800E23D59 /* DiffusionInfoXPCProtocol.swift in Sources */,
-				DD180E4A291AF8B800E23D59 /* DiffusionInfoXPC.swift in Sources */,
+				DD180E49291AF8B800E23D59 /* UnderPillowXPCProtocol.swift in Sources */,
+				DD180E4A291AF8B800E23D59 /* UnderPillowXPC.swift in Sources */,
 				DDF18A042919D4A700BC2201 /* ContentView.swift in Sources */,
-				DDF18A022919D4A700BC2201 /* DiffusionInfoApp.swift in Sources */,
+				DDF18A022919D4A700BC2201 /* UnderPillowApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,9 +360,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD180E44291AF1EA00E23D59 /* DiffusionInfoXPCProtocol.swift in Sources */,
-				DD180E45291AF1EA00E23D59 /* DiffusionInfoXPC.swift in Sources */,
-				DD180E46291AF1EA00E23D59 /* DiffusionInfoXPCDelegate.swift in Sources */,
+				DD180E44291AF1EA00E23D59 /* UnderPillowXPCProtocol.swift in Sources */,
+				DD180E45291AF1EA00E23D59 /* UnderPillowXPC.swift in Sources */,
+				DD180E46291AF1EA00E23D59 /* UnderPillowXPCDelegate.swift in Sources */,
 				DDF18A172919D4CC00BC2201 /* FinderSync.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,17 +372,17 @@
 /* Begin PBXTargetDependency section */
 		DD180E3E291AD38500E23D59 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DD180E33291AD38500E23D59 /* DiffusionInfoXPC */;
+			target = DD180E33291AD38500E23D59 /* UnderPillowXPC */;
 			targetProxy = DD180E3D291AD38500E23D59 /* PBXContainerItemProxy */;
 		};
 		DD180E4D291B14AE00E23D59 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DD180E33291AD38500E23D59 /* DiffusionInfoXPC */;
+			target = DD180E33291AD38500E23D59 /* UnderPillowXPC */;
 			targetProxy = DD180E4C291B14AE00E23D59 /* PBXContainerItemProxy */;
 		};
 		DDF18A1B2919D4CC00BC2201 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DDF18A132919D4CC00BC2201 /* DiffusionInfo Finder */;
+			target = DDF18A132919D4CC00BC2201 /* UnderPillow Finder */;
 			targetProxy = DDF18A1A2919D4CC00BC2201 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -398,11 +398,11 @@
 				DEVELOPMENT_TEAM = D3SBBNFWTC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DiffusionInfoXPC/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = DiffusionInfoXPC;
+				INFOPLIST_FILE = UnderPillowXPC/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = UnderPillowXPC;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.DiffusionInfoXPC";
+				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.UnderPillowXPC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -423,11 +423,11 @@
 				DEVELOPMENT_TEAM = D3SBBNFWTC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DiffusionInfoXPC/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = DiffusionInfoXPC;
+				INFOPLIST_FILE = UnderPillowXPC/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = UnderPillowXPC;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.DiffusionInfoXPC";
+				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.UnderPillowXPC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -560,12 +560,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = DiffusionInfo/DiffusionInfo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = UnderPillow/UnderPillow.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DiffusionInfo/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"UnderPillow/Preview Content\"";
 				DEVELOPMENT_TEAM = D3SBBNFWTC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -576,7 +576,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.DiffusionInfo";
+				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.UnderPillow";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -591,12 +591,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = DiffusionInfo/DiffusionInfo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = UnderPillow/UnderPillow.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DiffusionInfo/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"UnderPillow/Preview Content\"";
 				DEVELOPMENT_TEAM = D3SBBNFWTC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -607,7 +607,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.DiffusionInfo";
+				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.UnderPillow";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -618,7 +618,7 @@
 		DDF18A1E2919D4CC00BC2201 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "DiffusionInfo Finder/DiffusionInfo_Finder.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "UnderPillow Finder/UnderPillow_Finder.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -626,8 +626,8 @@
 				DEVELOPMENT_TEAM = D3SBBNFWTC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "DiffusionInfo Finder/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "DiffusionInfo Finder";
+				INFOPLIST_FILE = "UnderPillow Finder/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "UnderPillow Finder";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -635,7 +635,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.DiffusionInfo.DiffusionInfo-Finder";
+				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.UnderPillow.UnderPillow-Finder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -647,7 +647,7 @@
 		DDF18A1F2919D4CC00BC2201 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "DiffusionInfo Finder/DiffusionInfo_Finder.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "UnderPillow Finder/UnderPillow_Finder.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -655,8 +655,8 @@
 				DEVELOPMENT_TEAM = D3SBBNFWTC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "DiffusionInfo Finder/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "DiffusionInfo Finder";
+				INFOPLIST_FILE = "UnderPillow Finder/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "UnderPillow Finder";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -664,7 +664,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.DiffusionInfo.DiffusionInfo-Finder";
+				PRODUCT_BUNDLE_IDENTIFIER = "Crispy-Driven-Pixels.UnderPillow.UnderPillow-Finder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -676,7 +676,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DD180E40291AD38500E23D59 /* Build configuration list for PBXNativeTarget "DiffusionInfoXPC" */ = {
+		DD180E40291AD38500E23D59 /* Build configuration list for PBXNativeTarget "UnderPillowXPC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DD180E41291AD38500E23D59 /* Debug */,
@@ -685,7 +685,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DDF189F92919D4A700BC2201 /* Build configuration list for PBXProject "DiffusionInfo" */ = {
+		DDF189F92919D4A700BC2201 /* Build configuration list for PBXProject "UnderPillow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DDF18A0B2919D4AA00BC2201 /* Debug */,
@@ -694,7 +694,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DDF18A0D2919D4AA00BC2201 /* Build configuration list for PBXNativeTarget "DiffusionInfo" */ = {
+		DDF18A0D2919D4AA00BC2201 /* Build configuration list for PBXNativeTarget "UnderPillow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DDF18A0E2919D4AA00BC2201 /* Debug */,
@@ -703,7 +703,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DDF18A1D2919D4CC00BC2201 /* Build configuration list for PBXNativeTarget "DiffusionInfo Finder" */ = {
+		DDF18A1D2919D4CC00BC2201 /* Build configuration list for PBXNativeTarget "UnderPillow Finder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DDF18A1E2919D4CC00BC2201 /* Debug */,

@@ -1,16 +1,16 @@
 //
-//  DiffusionInfoXPC.m
-//  DiffusionInfoXPC
+//  UnderPillowXPC.m
+//  UnderPillowXPC
 //
 //  Created by Anastasiy on 11/8/22.
 //
 
 import Foundation
 
-class DiffusionInfoXPCDelegate: NSObject, NSXPCListenerDelegate {
+class UnderPillowXPCDelegate: NSObject, NSXPCListenerDelegate {
     func listener(_ listener: NSXPCListener, shouldAcceptNewConnection newConnection: NSXPCConnection) -> Bool {        
-        newConnection.exportedInterface = NSXPCInterface(with: DiffusionInfoXPCProtocol.self)
-        let exportedObject = DiffusionInfoXPC()
+        newConnection.exportedInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
+        let exportedObject = UnderPillowXPC()
         newConnection.exportedObject = exportedObject
         newConnection.resume()
         return true

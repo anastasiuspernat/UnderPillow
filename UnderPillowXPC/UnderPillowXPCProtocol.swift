@@ -1,6 +1,6 @@
 //
-//  DiffusionInfoXPCProtocol.h
-//  DiffusionInfoXPC
+//  UnderPillowXPCProtocol.h
+//  UnderPillowXPC
 //
 //  Created by Anastasiy on 11/8/22.
 //
@@ -9,7 +9,7 @@
 import Foundation
 
 // The protocol that this service will vend as its API. This header file will also need to be visible to the process hosting the service.
-@objc public protocol DiffusionInfoXPCProtocol {
+@objc public protocol UnderPillowXPCProtocol {
     // func upperCaseString(_ string: String, withReply reply: @escaping (String) -> Void)
     
     func getFolders(withReply reply: @escaping (String) -> Void)
@@ -21,8 +21,8 @@ import Foundation
 /*
  To use the service from an application or other process, use NSXPCConnection to establish a connection to the service by doing something like this:
 
-     _connectionToService = [[NSXPCConnection alloc] initWithServiceName:@"Crispy-Driven-Pixels.DiffusionInfoXPC"];
-     _connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(DiffusionInfoXPCProtocol)];
+     _connectionToService = [[NSXPCConnection alloc] initWithServiceName:@"Crispy-Driven-Pixels.UnderPillowXPC"];
+     _connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(UnderPillowXPCProtocol)];
      [_connectionToService resume];
 
 Once you have a connection to the service, you can use it like this:
