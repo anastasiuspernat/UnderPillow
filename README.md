@@ -1,6 +1,6 @@
 ![](https://github.com/anastasiuspernat/DiffusionInfo/blob/main/UnderPillow/Assets.xcassets/AppIcon.appiconset/icon_256x256.png?raw=true)
 # UnderPillow
-A macOS Finder right-click menu extension that displays diffusion metadata
+A macOS Finder right-click menu extension that displays diffusion metadata (usually created by Python's Pillow)
 
 # Features
 - Right-click on a .png (or any other image) displays metadata info in macOS Finder
