@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  DiffusionInfo
+//  UnderPillow
 //
 //  Created by Anastasiy on 11/7/22.
 //
@@ -39,13 +39,13 @@ struct ContentView: View {
 
                         if (dialog.runModal() == NSApplication.ModalResponse.OK) {
                             
-                            let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.DiffusionInfoXPC")
-                            connection.remoteObjectInterface = NSXPCInterface(with: DiffusionInfoXPCProtocol.self)
+                            let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.UnderPillowXPC")
+                            connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
                             connection.resume()
 
                             var service = connection.remoteObjectProxyWithErrorHandler { error in
                                 print("Received error:", error)
-                            } as? DiffusionInfoXPCProtocol
+                            } as? UnderPillowXPCProtocol
 
                             var imageDataDict: NSMutableDictionary = [:]//= ["image": "image"]
                             

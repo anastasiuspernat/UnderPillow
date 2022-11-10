@@ -1,6 +1,6 @@
 //
-//  DiffusionInfoApp.swift
-//  DiffusionInfo
+//  UnderPillowApp.swift
+//  UnderPillowApp
 //
 //  Created by Anastasiy on 11/7/22.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 
 
 @main
-struct DiffusionInfoApp: App {
+struct UnderPillowApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

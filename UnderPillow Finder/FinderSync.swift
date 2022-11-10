@@ -1,6 +1,6 @@
 //
 //  FinderSync.swift
-//  DiffusionInfo Finder
+//  UnderPillow Finder
 //
 //  Created by Anastasiy on 11/7/22.
 //
@@ -19,12 +19,12 @@ class FinderSync: FIFinderSync {
         
         FIFinderSyncController.default().directoryURLs = []
 
-        let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.DiffusionInfoXPC")
-        connection.remoteObjectInterface = NSXPCInterface(with: DiffusionInfoXPCProtocol.self)
+        let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.UnderPillowXPC")
+        connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
         connection.resume()
         let service = connection.remoteObjectProxyWithErrorHandler { error in
             NSLog("Received error: \(error)")
-        } as? DiffusionInfoXPCProtocol
+        } as? UnderPillowXPCProtocol
 
         service?.getFolders() { response in
             
@@ -88,11 +88,11 @@ class FinderSync: FIFinderSync {
     // MARK: - Menu and toolbar item support
     
     override var toolbarItemName: String {
-        return "DiffusionInfo"
+        return "UnderPillow"
     }
     
     override var toolbarItemToolTip: String {
-        return "DiffusionInfo: Click the toolbar item for a menu."
+        return "UnderPillow: Click the toolbar item for a menu."
     }
     
     override var toolbarItemImage: NSImage {
@@ -132,14 +132,14 @@ class FinderSync: FIFinderSync {
         currentFile = item
         let menu = NSMenu(title: "")
 
-        let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.DiffusionInfoXPC")
-        connection.remoteObjectInterface = NSXPCInterface(with: DiffusionInfoXPCProtocol.self)
+        let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.UnderPillowXPC")
+        connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
         connection.resume()
         let service = connection.remoteObjectProxyWithErrorHandler { error in
             NSLog("Received error: \(error)")
-        } as? DiffusionInfoXPCProtocol
+        } as? UnderPillowXPCProtocol
         
-        var diffusionInfo = ""
+        var UnderPillow = ""
         
         let sem = DispatchSemaphore(value: 0)
 
@@ -147,7 +147,7 @@ class FinderSync: FIFinderSync {
             defer {
                 sem.signal()
             }
-            diffusionInfo = response
+            UnderPillow = response
         }
         if !Thread.isMainThread {
             let _ = sem.wait(timeout: .distantFuture)
@@ -165,7 +165,7 @@ class FinderSync: FIFinderSync {
 //            }
 //            if let dict = imageProperties as? [AnyHashable: Any] {
 //                    for (key, value) in dict {
-//                        diffusionInfo += value as! String
+//                        UnderPillow += value as! String
 //                    }
 //            } else
 //            {
@@ -174,8 +174,8 @@ class FinderSync: FIFinderSync {
 //        {
 //        }
         if (UTTypeConformsTo(uti as CFString, kUTTypeImage)) {
-            menu.addItem(withTitle: "Diffusion Info", action: #selector(sampleAction(_:)), keyEquivalent: "")
-            let lines = diffusionInfo.split(whereSeparator: \.isNewline)
+            menu.addItem(withTitle: "Under Pillow", action: #selector(sampleAction(_:)), keyEquivalent: "")
+            let lines = UnderPillow.split(whereSeparator: \.isNewline)
             for line in lines {
                 menu.addItem(withTitle: String(line), action: #selector(sampleAction(_:)), keyEquivalent: "")
             }
