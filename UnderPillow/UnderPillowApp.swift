@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import Foundation
 
 
 @main
 struct UnderPillowApp: App {
+    @ObservedObject var viewModel = ListViewModel()
+    init() {
+        
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()

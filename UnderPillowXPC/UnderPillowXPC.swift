@@ -38,13 +38,14 @@ class UnderPillowXPC: NSObject, UnderPillowXPCProtocol {
 
     func getDiffusionData(withReply filePath:String, reply: @escaping (String) -> Void) {
         
-        // TODO: replace with this
-//        if let imageSource = CGImageSourceCreateWithURL(item as CFURL, nil) {
+        // TODO: replace with this when it's working
+//        var UnderPillow: String = ""
+//        if let imageSource = CGImageSourceCreateWithURL(URL(string: filePath)! as CFURL, nil) {
 //            guard let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) else {
-//                return nil
+//                return reply("")
 //            }
 //            if let dict = imageProperties as? [AnyHashable: Any] {
-//                    for (key, value) in dict {
+//                    for (_, value) in dict {
 //                        UnderPillow += value as! String
 //                    }
 //            } else

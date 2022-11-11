@@ -12,16 +12,58 @@ struct names {
     var name = ""
 }
 
-var demoData = [""]
+@MainActor public class ListViewModel: ObservableObject {
+  @Published var items: [String] = []
+}
 
 struct ContentView: View {
     @State var selectKeeper = Set<String>()
-    
+    @ObservedObject var viewModel = ListViewModel()
+
     var body: some View {
         HStack {
-            List(demoData, id: \.self, selection: $selectKeeper){ name in
+            List(viewModel.items, id: \.self, selection: $selectKeeper){ name in
                 Text(name)
             }
+                .onAppear{
+                    let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
+                    connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
+                    connection.resume()
+                    let service = connection.remoteObjectProxyWithErrorHandler { error in
+                        NSLog("Received error: \(error)")
+                    } as? UnderPillowXPCProtocol
+
+                    var folderPaths: [String] = []
+                    
+                    let sem = DispatchSemaphore(value: 0)
+                    
+
+                    service?.getFolders() { response in
+                        defer {
+                            sem.signal()
+                        }
+                        if let data = response.data(using: .utf8) {
+                                if let dict: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
+                                    folderPaths = dict[UnderPillowXPC.keyFolderSettings] as? [String] ?? []
+                                }
+                            }
+                    }
+
+                    if !Thread.isMainThread {
+                        let _ = sem.wait(timeout: .distantFuture)
+                    } else {
+                        while sem.wait(timeout: .now()) == .timedOut {
+                            RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0))
+                        }
+                    }
+                    
+                    viewModel.items = []
+                    for folderPath in folderPaths {
+                        viewModel.items.append(folderPath)
+                    }
+
+
+                }
                 .frame(maxWidth: .infinity)
             VStack {
                 Text("Click on the button below to select folders with images")
