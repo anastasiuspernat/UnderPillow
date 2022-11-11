@@ -49,7 +49,7 @@ struct ContentView: View {
 
                             var imageDataDict: NSMutableDictionary = [:]//= ["image": "image"]
                             
-                            imageDataDict = ["folderSettings":[dialog.url?.path]]
+                            imageDataDict = [UnderPillowXPC.keyFolderSettings:[dialog.url?.path]]
                             
                             if let theJSONData = try? JSONSerialization.data(
                                 withJSONObject: imageDataDict,

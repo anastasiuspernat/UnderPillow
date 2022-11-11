@@ -12,6 +12,8 @@ import Foundation
 // This object implements the protocol which we have defined. It provides the actual behavior for the service. It is 'exported' by the service to make it available to the process hosting the service over an NSXPCConnection.
 class UnderPillowXPC: NSObject, UnderPillowXPCProtocol {
     
+    static let keyFolderSettings = "folderSettings"
+
     override init() {
         super.init()
     }
@@ -35,18 +37,30 @@ class UnderPillowXPC: NSObject, UnderPillowXPCProtocol {
 
     func getDiffusionData(withReply filePath:String, reply: @escaping (String) -> Void) {
         
+        // TODO: replace with this
+//        if let imageSource = CGImageSourceCreateWithURL(item as CFURL, nil) {
+//            guard let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) else {
+//                return nil
+//            }
+//            if let dict = imageProperties as? [AnyHashable: Any] {
+//                    for (key, value) in dict {
+//                        UnderPillow += value as! String
+//                    }
+//            } else
+//            {
+//            }
+//        } else
+//        {
+//        }
+
         let UnderPillow: String = shell("python -c 'import sys; from PIL import Image; image = Image.open(\"\(filePath)\"); textinfo = image.text[\"parameters\"]; print (textinfo);'")
         reply(UnderPillow)
     }
 
     
     func getFolders(withReply reply: @escaping (String) -> Void) {
-//            let defaults = UserDefaults.standard
-
-        
-        
-        let defaults = UserDefaults.standard // UserDefaults(suiteName: "Crispy-Driven-Pixels.UnderPillowXPC")?
-        let folderSettings = ["folderSettings":defaults.object(forKey: "folderSettings")]
+        let defaults = UserDefaults.standard
+        let folderSettings = [UnderPillowXPC.keyFolderSettings:defaults.object(forKey: UnderPillowXPC.keyFolderSettings)]
 
         if let theJSONData = try? JSONSerialization.data(
             withJSONObject: folderSettings,
@@ -66,7 +80,7 @@ class UnderPillowXPC: NSObject, UnderPillowXPCProtocol {
         if let data = folders_dictJSON.data(using: .utf8) {
                 if let folders_dict: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
                     let userDefaults = UserDefaults.standard // UserDefaults(suiteName: "Crispy-Driven-Pixels.UnderPillowXPC")
-                    userDefaults.set(folders_dict["folderSettings"], forKey:"folderSettings")
+                    userDefaults.set(folders_dict[UnderPillowXPC.keyFolderSettings], forKey:UnderPillowXPC.keyFolderSettings)
                 }
             }
     }

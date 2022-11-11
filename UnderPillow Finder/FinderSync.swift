@@ -30,13 +30,8 @@ class FinderSync: FIFinderSync {
             
             if let data = response.data(using: .utf8) {
                     if let dict: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
-                        var folderUrls: [URL] = []
-                        let folderPaths: [String] = dict["folderSettings"] as? [String] ?? []
-                        for folderStr in folderPaths
-                        {
-                            folderUrls.append(URL(fileURLWithPath:folderStr))
-                        }
-                        FIFinderSyncController.default().directoryURLs = Set(folderUrls)
+                        let folderPaths: [String] = dict[UnderPillowXPC.keyFolderSettings] as? [String] ?? []
+                        self.refreshFolderURLsFrom(folderPaths: folderPaths)
                     }
                 }
         }
@@ -46,6 +41,16 @@ class FinderSync: FIFinderSync {
         FIFinderSyncController.default().setBadgeImage(NSImage(named: NSImage.cautionName)!, label: "Status Two", forBadgeIdentifier: "Two")
 
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.foldersChanged(_:)), name: NSNotification.Name("FoldersChanged"), object: nil)
+    }
+    
+    func refreshFolderURLsFrom( folderPaths: [String] )
+    {
+        var folderUrls: [URL] = []
+        for folderStr in folderPaths
+        {
+            folderUrls.append(URL(fileURLWithPath:folderStr))
+        }
+        FIFinderSyncController.default().directoryURLs = Set(folderUrls)
     }
     
     deinit {
@@ -58,7 +63,8 @@ class FinderSync: FIFinderSync {
         
         if let data = folderSettingsJSON.data(using: .utf8) {
                 if let foldersSettings: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
-                    // TODO: Refresh folderURLs
+                    let folderPaths: [String] = foldersSettings[UnderPillowXPC.keyFolderSettings] as? [String] ?? []
+                    self.refreshFolderURLsFrom(folderPaths: folderPaths)
                 }
             }
     }
@@ -158,21 +164,6 @@ class FinderSync: FIFinderSync {
         }
         
 
-        // This won't work
-//        if let imageSource = CGImageSourceCreateWithURL(item as CFURL, nil) {
-//            guard let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) else {
-//                return nil
-//            }
-//            if let dict = imageProperties as? [AnyHashable: Any] {
-//                    for (key, value) in dict {
-//                        UnderPillow += value as! String
-//                    }
-//            } else
-//            {
-//            }
-//        } else
-//        {
-//        }
         if (UTTypeConformsTo(uti as CFString, kUTTypeImage)) {
             menu.addItem(withTitle: "Under Pillow", action: #selector(sampleAction(_:)), keyEquivalent: "")
             let lines = UnderPillow.split(whereSeparator: \.isNewline)
