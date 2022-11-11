@@ -13,6 +13,7 @@ import Foundation
 class UnderPillowXPC: NSObject, UnderPillowXPCProtocol {
     
     static let keyFolderSettings = "folderSettings"
+    static let myServiceName = "Crispy-Driven-Pixels.UnderPillowXPC"
 
     override init() {
         super.init()
@@ -79,7 +80,7 @@ class UnderPillowXPC: NSObject, UnderPillowXPCProtocol {
         
         if let data = folders_dictJSON.data(using: .utf8) {
                 if let folders_dict: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
-                    let userDefaults = UserDefaults.standard // UserDefaults(suiteName: "Crispy-Driven-Pixels.UnderPillowXPC")
+                    let userDefaults = UserDefaults.standard
                     userDefaults.set(folders_dict[UnderPillowXPC.keyFolderSettings], forKey:UnderPillowXPC.keyFolderSettings)
                 }
             }

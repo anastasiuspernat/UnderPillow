@@ -19,7 +19,7 @@ class FinderSync: FIFinderSync {
         
         FIFinderSyncController.default().directoryURLs = []
 
-        let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.UnderPillowXPC")
+        let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
         connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
         connection.resume()
         let service = connection.remoteObjectProxyWithErrorHandler { error in
@@ -138,7 +138,7 @@ class FinderSync: FIFinderSync {
         currentFile = item
         let menu = NSMenu(title: "")
 
-        let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.UnderPillowXPC")
+        let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
         connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
         connection.resume()
         let service = connection.remoteObjectProxyWithErrorHandler { error in

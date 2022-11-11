@@ -39,7 +39,7 @@ struct ContentView: View {
 
                         if (dialog.runModal() == NSApplication.ModalResponse.OK) {
                             
-                            let connection = NSXPCConnection(serviceName: "Crispy-Driven-Pixels.UnderPillowXPC")
+                            let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
                             connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
                             connection.resume()
 
