@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FinderSync
 
 struct names {
     var id = 0
@@ -36,7 +37,6 @@ struct ContentView: View {
                     var folderPaths: [String] = []
                     
                     let sem = DispatchSemaphore(value: 0)
-                    
 
                     service?.getFolders() { response in
                         defer {
@@ -46,7 +46,7 @@ struct ContentView: View {
                                 if let dict: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
                                     folderPaths = dict[UnderPillowXPC.keyFolderSettings] as? [String] ?? []
                                 }
-                            }
+                        }
                     }
 
                     if !Thread.isMainThread {
@@ -61,13 +61,12 @@ struct ContentView: View {
                     for folderPath in folderPaths {
                         viewModel.items.append(folderPath)
                     }
-
-
                 }
                 .frame(maxWidth: .infinity)
             VStack {
                 Text("Click on the button below to select folders with images")
-                    .padding()
+                    .padding(.leading, 10)
+                    .padding(.trailing, 10)
                 Button(action: {
                                 
                     let dialog = NSOpenPanel();
@@ -81,34 +80,36 @@ struct ContentView: View {
 
                         if (dialog.runModal() == NSApplication.ModalResponse.OK) {
                             
-                            let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
-                            connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
-                            connection.resume()
-
-                            var service = connection.remoteObjectProxyWithErrorHandler { error in
-                                print("Received error:", error)
-                            } as? UnderPillowXPCProtocol
-
-                            var imageDataDict: NSMutableDictionary = [:]//= ["image": "image"]
+                            let newPath = dialog.url?.path;
                             
-                            imageDataDict = [UnderPillowXPC.keyFolderSettings:[dialog.url?.path]]
-                            
-                            if let theJSONData = try? JSONSerialization.data(
-                                withJSONObject: imageDataDict,
-                                options: []) {
+                            if (viewModel.items.firstIndex(where: {$0 == newPath}) == nil) {
+                                
+                                viewModel.items.append(newPath!)
+                                    
+                                let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
+                                connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
+                                connection.resume()
 
-                                    let theJSONText = String(data: theJSONData,
-                                                           encoding: .utf8)
+                                let service = connection.remoteObjectProxyWithErrorHandler { error in
+                                    print("Received error:", error)
+                                } as? UnderPillowXPCProtocol
 
-                                service?.setFolders( theJSONText! ) { response in
-                                    print("Response from XPC service(2):", response)
+                                let imageDataDict: NSMutableDictionary = [UnderPillowXPC.keyFolderSettings:viewModel.items]
+                                
+                                if let theJSONData = try? JSONSerialization.data(
+                                    withJSONObject: imageDataDict,
+                                    options: []) {
+
+                                        let theJSONText = String(data: theJSONData,
+                                                               encoding: .utf8)
+
+                                    service?.setFolders( theJSONText! ) { response in
+                                        print("Response from XPC service(2):", response)
+                                    }
+
+                                    DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("FoldersChanged"), object: theJSONText, userInfo: nil, options: [.deliverImmediately])
                                 }
-
-                                DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("FoldersChanged"), object: theJSONText, userInfo: nil, options: [.deliverImmediately])
                             }
-
-                            
-
                         } else {
                             // User clicked on "Cancel"
                             return
@@ -116,7 +117,12 @@ struct ContentView: View {
                 }, label: {
                     Text("Select folders")
                 })
-                    .padding()
+                    .padding(.bottom, 50)
+                Button(action: {
+                    FIFinderSyncController.showExtensionManagementInterface()
+                }, label: {
+                    Text("Enable Finder Extension")
+                })
                 Spacer()
                         .frame(height: 40)
                 Text("Support, more information:")
