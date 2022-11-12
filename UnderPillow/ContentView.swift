@@ -125,11 +125,11 @@ struct ContentView: View {
                 })
                 Spacer()
                         .frame(height: 40)
-                Text("Support, more information:")
+                Text("Check for new versions and updates:")
                         .font(.system(size: 11))
                 Text("Anastasiy Safari")
                         .font(.system(size: 11))
-                Link("https://anastasiy.com", destination: URL(string: "https://anastasiy.com")!)
+                Link("https://anastasiy.com/ai", destination: URL(string: "https://anastasiy.com/ai")!)
                         .font(.system(size: 11))
             }
         }
