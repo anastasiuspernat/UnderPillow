@@ -4,6 +4,7 @@ A macOS Finder right-click menu extension that displays diffusion metadata (usua
 
 # Features
 - Right-click on a .png (or any other image) displays metadata info in macOS Finder
+- Click on the metadata to copy it to Clipboard
 - Displays **prompt, CFG scale, resolution** etc. added by common AI Art generators
 - Supports information from **Webui from AUTOMATIC1111, InvokeUI** etc 
 
