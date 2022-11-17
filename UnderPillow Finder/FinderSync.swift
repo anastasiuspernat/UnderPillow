@@ -180,6 +180,11 @@ class FinderSync: FIFinderSync {
         let items = FIFinderSyncController.default().selectedItemURLs()
         
         let item = sender as! NSMenuItem
+
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([.string], owner: nil)
+        pasteboard.setString(item.title, forType: .string)
+
         NSLog("sampleAction: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
         for obj in items! {
             NSLog("    %@", obj.path as NSString)
