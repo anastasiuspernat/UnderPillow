@@ -13,6 +13,7 @@ import Foundation
 class FinderSync: FIFinderSync {
                     
     var currentFile: URL?
+    var folderUrls: [URL] = []
 
     override init() {
         super.init()
@@ -45,7 +46,7 @@ class FinderSync: FIFinderSync {
     
     func refreshFolderURLsFrom( folderPaths: [String] )
     {
-        var folderUrls: [URL] = []
+        folderUrls = []
         for folderStr in folderPaths
         {
             folderUrls.append(URL(fileURLWithPath:folderStr))
@@ -183,18 +184,38 @@ class FinderSync: FIFinderSync {
     
     @IBAction func addToUnderPillow(_ sender: AnyObject?) {
         let target = FIFinderSyncController.default().targetedURL()
-        let items = FIFinderSyncController.default().selectedItemURLs()
-        
+
         let item = sender as! NSMenuItem
 
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([.string], owner: nil)
         pasteboard.setString(item.title, forType: .string)
 
-        NSLog("### addToUnderPillow: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
-        for obj in items! {
-            NSLog("    %@", obj.path as NSString)
+        folderUrls.append( URL(fileURLWithPath: target!.path) );
+        
+        let urlStrings = folderUrls.compactMap { $0.path }
+        let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
+        connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
+        connection.resume()
+        let service = connection.remoteObjectProxyWithErrorHandler { error in
+            NSLog("Received error: \(error)")
+        } as? UnderPillowXPCProtocol
+
+        let imageDataDict: NSMutableDictionary = [UnderPillowXPC.keyFolderSettings:urlStrings]
+
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: imageDataDict,
+            options: []) {
+
+                let theJSONText = String(data: theJSONData,
+                                       encoding: .utf8)
+
+            service?.setFolders( theJSONText! ) { response in
+                print("Response from XPC service(2):", response)
+            }
         }
+
+        FIFinderSyncController.default().directoryURLs = Set(folderUrls)
     }
 
     @IBAction func launchUnderPillow(_ sender: AnyObject?) {
@@ -206,6 +227,7 @@ class FinderSync: FIFinderSync {
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([.string], owner: nil)
         pasteboard.setString(item.title, forType: .string)
+        
 
         NSLog("### launchUnderPillow: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
         for obj in items! {
