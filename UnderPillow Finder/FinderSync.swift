@@ -102,7 +102,7 @@ class FinderSync: FIFinderSync {
     }
     
     override var toolbarItemImage: NSImage {
-        return NSImage(named: NSImage.cautionName)!
+        return NSApp.applicationIconImage
     }
     
     func shell(_ command: String) -> String {
@@ -125,10 +125,15 @@ class FinderSync: FIFinderSync {
     // Note that this also can produce menu items for Finder toolbar
     override func menu(for menuKind: FIMenuKind) -> NSMenu? {
         // Produce a menu for the extension.
-
-        guard menuKind == .contextualMenuForItems else {
-                    return nil
-        }
+        
+        if (menuKind == .toolbarItemMenu) {
+            let menu = NSMenu(title: "")
+            menu.addItem(withTitle: "Add folder to UnderPillow", action: #selector(addToUnderPillow(_:)), keyEquivalent: "")
+            return menu
+        } else
+            if (menuKind != .contextualMenuForItems) {
+                return nil
+            }
         
         guard let items = FIFinderSyncController.default().selectedItemURLs(), items.count == 1, let item = items.first, let uti = try? item.resourceValues(forKeys: [.typeIdentifierKey]).typeIdentifier else {
             currentFile = nil
@@ -175,6 +180,22 @@ class FinderSync: FIFinderSync {
         return menu
     }
     
+    @IBAction func addToUnderPillow(_ sender: AnyObject?) {
+        let target = FIFinderSyncController.default().targetedURL()
+        let items = FIFinderSyncController.default().selectedItemURLs()
+        
+        let item = sender as! NSMenuItem
+
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([.string], owner: nil)
+        pasteboard.setString(item.title, forType: .string)
+
+        NSLog("### sampleAction: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
+        for obj in items! {
+            NSLog("    %@", obj.path as NSString)
+        }
+    }
+
     @IBAction func sampleAction(_ sender: AnyObject?) {
         let target = FIFinderSyncController.default().targetedURL()
         let items = FIFinderSyncController.default().selectedItemURLs()
