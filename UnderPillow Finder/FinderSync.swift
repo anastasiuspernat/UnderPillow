@@ -201,10 +201,10 @@ class FinderSync: FIFinderSync {
             NSLog("Received error: \(error)")
         } as? UnderPillowXPCProtocol
 
-        let imageDataDict: NSMutableDictionary = [UnderPillowXPC.keyFolderSettings:urlStrings]
+        let foldersStringsDict: NSMutableDictionary = [UnderPillowXPC.keyFolderSettings:urlStrings]
 
         if let theJSONData = try? JSONSerialization.data(
-            withJSONObject: imageDataDict,
+            withJSONObject: foldersStringsDict,
             options: []) {
 
                 let theJSONText = String(data: theJSONData,

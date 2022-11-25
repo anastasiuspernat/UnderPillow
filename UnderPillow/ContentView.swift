@@ -94,10 +94,10 @@ struct ContentView: View {
                                     print("Received error:", error)
                                 } as? UnderPillowXPCProtocol
 
-                                let imageDataDict: NSMutableDictionary = [UnderPillowXPC.keyFolderSettings:viewModel.items]
+                                let foldersStringsDict: NSMutableDictionary = [UnderPillowXPC.keyFolderSettings:viewModel.items]
                                 
                                 if let theJSONData = try? JSONSerialization.data(
-                                    withJSONObject: imageDataDict,
+                                    withJSONObject: foldersStringsDict,
                                     options: []) {
 
                                         let theJSONText = String(data: theJSONData,
