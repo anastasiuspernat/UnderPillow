@@ -129,6 +129,7 @@ class FinderSync: FIFinderSync {
         if (menuKind == .toolbarItemMenu) {
             let menu = NSMenu(title: "")
             menu.addItem(withTitle: "Add folder to UnderPillow", action: #selector(addToUnderPillow(_:)), keyEquivalent: "")
+            menu.addItem(withTitle: "Launch UnderPillow", action: #selector(launchUnderPillow(_:)), keyEquivalent: "")
             return menu
         } else
             if (menuKind != .contextualMenuForItems) {
@@ -190,7 +191,23 @@ class FinderSync: FIFinderSync {
         pasteboard.declareTypes([.string], owner: nil)
         pasteboard.setString(item.title, forType: .string)
 
-        NSLog("### sampleAction: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
+        NSLog("### addToUnderPillow: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
+        for obj in items! {
+            NSLog("    %@", obj.path as NSString)
+        }
+    }
+
+    @IBAction func launchUnderPillow(_ sender: AnyObject?) {
+        let target = FIFinderSyncController.default().targetedURL()
+        let items = FIFinderSyncController.default().selectedItemURLs()
+        
+        let item = sender as! NSMenuItem
+
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([.string], owner: nil)
+        pasteboard.setString(item.title, forType: .string)
+
+        NSLog("### launchUnderPillow: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
         for obj in items! {
             NSLog("    %@", obj.path as NSString)
         }
