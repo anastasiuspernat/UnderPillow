@@ -72,7 +72,7 @@ class FinderSync: FIFinderSync {
         
     }
     
-    
+
     override func beginObservingDirectory(at url: URL) {
         // The user is now seeing the container's contents.
         // If they see it in more than one view at a time, we're only told once.
@@ -144,18 +144,13 @@ class FinderSync: FIFinderSync {
             currentFile = item
             let menu = NSMenu(title: "")
 
-            let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
-            connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
-            connection.resume()
-            let service = connection.remoteObjectProxyWithErrorHandler { error in
-                NSLog("Received error: \(error)")
-            } as? UnderPillowXPCProtocol
-            
+            let service = UnderPillowXPC.getService()
+
             var UnderPillow = ""
             
             let sem = DispatchSemaphore(value: 0)
 
-            service?.getDiffusionData(withReply: item.path) { response in
+            service.getDiffusionData(withReply: item.path) { response in
                 defer {
                     sem.signal()
                 }
@@ -191,12 +186,7 @@ class FinderSync: FIFinderSync {
         folderUrls.append( URL(fileURLWithPath: target!.path) );
         let urlStrings = folderUrls.compactMap { $0.path }
         
-        let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
-        connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
-        connection.resume()
-        let service = connection.remoteObjectProxyWithErrorHandler { error in
-            NSLog("Received error: \(error)")
-        } as? UnderPillowXPCProtocol
+        let service = UnderPillowXPC.getService()
 
         let foldersStringsDict: NSMutableDictionary = [UnderPillowXPC.keyFolderSettings:urlStrings]
 
@@ -207,7 +197,7 @@ class FinderSync: FIFinderSync {
                 let theJSONText = String(data: theJSONData,
                                        encoding: .utf8)
 
-            service?.setFolders( theJSONText! ) { response in
+            service.setFolders( theJSONText! ) { response in
                 print("Response from XPC service(2):", response)
             }
         }

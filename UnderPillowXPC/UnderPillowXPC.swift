@@ -36,6 +36,19 @@ class UnderPillowXPC: NSObject, UnderPillowXPCProtocol {
         
         return output
     }
+    
+    static func getService() -> UnderPillowXPCProtocol
+    {
+        let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
+        connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
+        connection.resume()
+
+        let service = connection.remoteObjectProxyWithErrorHandler { error in
+            print("Received error:", error)
+        } as? UnderPillowXPCProtocol
+        
+        return service!
+    }
 
     func getDiffusionData(withReply filePath:String, reply: @escaping (String) -> Void) {
         

@@ -27,18 +27,13 @@ struct ContentView: View {
                 Text(name)
             }
                 .onAppear{
-                    let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
-                    connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
-                    connection.resume()
-                    let service = connection.remoteObjectProxyWithErrorHandler { error in
-                        NSLog("Received error: \(error)")
-                    } as? UnderPillowXPCProtocol
+                    let service = UnderPillowXPC.getService()
 
                     var folderPaths: [String] = []
                     
                     let sem = DispatchSemaphore(value: 0)
 
-                    service?.getFolders() { response in
+                    service.getFolders() { response in
                         defer {
                             sem.signal()
                         }
@@ -86,13 +81,7 @@ struct ContentView: View {
                                 
                                 viewModel.items.append(newPath!)
                                     
-                                let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
-                                connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
-                                connection.resume()
-
-                                let service = connection.remoteObjectProxyWithErrorHandler { error in
-                                    print("Received error:", error)
-                                } as? UnderPillowXPCProtocol
+                                let service = UnderPillowXPC.getService()
 
                                 let foldersStringsDict: NSMutableDictionary = [UnderPillowXPC.keyFolderSettings:viewModel.items]
                                 
@@ -103,7 +92,7 @@ struct ContentView: View {
                                         let theJSONText = String(data: theJSONData,
                                                                encoding: .utf8)
 
-                                    service?.setFolders( theJSONText! ) { response in
+                                    service.setFolders( theJSONText! ) { response in
                                         print("Response from XPC service(2):", response)
                                     }
 
