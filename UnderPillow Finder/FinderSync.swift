@@ -135,53 +135,54 @@ class FinderSync: FIFinderSync {
             menu.addItem(withTitle: "Launch UnderPillow", action: #selector(launchUnderPillow(_:)), keyEquivalent: "")
             return menu
         } else
-            if (menuKind != .contextualMenuForItems) {
+        if (menuKind == .contextualMenuForItems) {
+            guard let items = FIFinderSyncController.default().selectedItemURLs(), items.count == 1, let item = items.first, let uti = try? item.resourceValues(forKeys: [.typeIdentifierKey]).typeIdentifier else {
+                currentFile = nil
                 return nil
             }
-        
-        guard let items = FIFinderSyncController.default().selectedItemURLs(), items.count == 1, let item = items.first, let uti = try? item.resourceValues(forKeys: [.typeIdentifierKey]).typeIdentifier else {
-            currentFile = nil
+
+            currentFile = item
+            let menu = NSMenu(title: "")
+
+            let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
+            connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
+            connection.resume()
+            let service = connection.remoteObjectProxyWithErrorHandler { error in
+                NSLog("Received error: \(error)")
+            } as? UnderPillowXPCProtocol
+            
+            var UnderPillow = ""
+            
+            let sem = DispatchSemaphore(value: 0)
+
+            service?.getDiffusionData(withReply: item.path) { response in
+                defer {
+                    sem.signal()
+                }
+                UnderPillow = response
+            }
+            
+            if !Thread.isMainThread {
+                let _ = sem.wait(timeout: .distantFuture)
+            } else {
+                while sem.wait(timeout: .now()) == .timedOut {
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0))
+                }
+            }
+            
+            if (UTTypeConformsTo(uti as CFString, kUTTypeImage)) {
+                menu.addItem(withTitle: "Under Pillow", action: #selector(copyMenuToClipboard(_:)), keyEquivalent: "")
+                let lines = UnderPillow.split(whereSeparator: \.isNewline)
+                for line in lines {
+                    menu.addItem(withTitle: String(line), action: #selector(copyMenuToClipboard(_:)), keyEquivalent: "")
+                }
+            }
+            
+            return menu
+        } else {
             return nil
         }
 
-        currentFile = item
-        let menu = NSMenu(title: "")
-
-        let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
-        connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
-        connection.resume()
-        let service = connection.remoteObjectProxyWithErrorHandler { error in
-            NSLog("Received error: \(error)")
-        } as? UnderPillowXPCProtocol
-        
-        var UnderPillow = ""
-        
-        let sem = DispatchSemaphore(value: 0)
-
-        service?.getDiffusionData(withReply: item.path) { response in
-            defer {
-                sem.signal()
-            }
-            UnderPillow = response
-        }
-        if !Thread.isMainThread {
-            let _ = sem.wait(timeout: .distantFuture)
-        } else {
-            while sem.wait(timeout: .now()) == .timedOut {
-                RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0))
-            }
-        }
-        
-
-        if (UTTypeConformsTo(uti as CFString, kUTTypeImage)) {
-            menu.addItem(withTitle: "Under Pillow", action: #selector(sampleAction(_:)), keyEquivalent: "")
-            let lines = UnderPillow.split(whereSeparator: \.isNewline)
-            for line in lines {
-                menu.addItem(withTitle: String(line), action: #selector(sampleAction(_:)), keyEquivalent: "")
-            }
-        }
-        
-        return menu
     }
     
     @IBAction func addToUnderPillow(_ sender: AnyObject?) {
@@ -226,31 +227,17 @@ class FinderSync: FIFinderSync {
         
         let item = sender as! NSMenuItem
 
-        let pasteboard = NSPasteboard.general
-        pasteboard.declareTypes([.string], owner: nil)
-        pasteboard.setString(item.title, forType: .string)
-        
-
         NSLog("### launchUnderPillow: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
         for obj in items! {
             NSLog("    %@", obj.path as NSString)
         }
     }
 
-    @IBAction func sampleAction(_ sender: AnyObject?) {
-        let target = FIFinderSyncController.default().targetedURL()
-        let items = FIFinderSyncController.default().selectedItemURLs()
-        
+    @IBAction func copyMenuToClipboard(_ sender: AnyObject?) {
         let item = sender as! NSMenuItem
-
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([.string], owner: nil)
         pasteboard.setString(item.title, forType: .string)
-
-        NSLog("sampleAction: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
-        for obj in items! {
-            NSLog("    %@", obj.path as NSString)
-        }
     }
 
 }
