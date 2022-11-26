@@ -188,15 +188,9 @@ class FinderSync: FIFinderSync {
     @IBAction func addToUnderPillow(_ sender: AnyObject?) {
         let target = FIFinderSyncController.default().targetedURL()
 
-        let item = sender as! NSMenuItem
-
-        let pasteboard = NSPasteboard.general
-        pasteboard.declareTypes([.string], owner: nil)
-        pasteboard.setString(item.title, forType: .string)
-
         folderUrls.append( URL(fileURLWithPath: target!.path) );
-        
         let urlStrings = folderUrls.compactMap { $0.path }
+        
         let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
         connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
         connection.resume()
