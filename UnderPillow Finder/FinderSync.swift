@@ -29,19 +29,26 @@ class FinderSync: FIFinderSync {
 
         service?.getFolders() { response in
             
-            if let data = response.data(using: .utf8) {
-                    if let dict: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
-                        let folderPaths: [String] = dict[UnderPillowXPC.keyFolderSettings] as? [String] ?? []
-                        self.refreshFolderURLsFrom(folderPaths: folderPaths)
-                    }
-                }
+            self.getFoldersFromJSONSettingsAndRefreshFolderURLs(jsonString: response)
+            
         }
 
         // Set up images for our badge identifiers. For demonstration purposes, this uses off-the-shelf images.
         FIFinderSyncController.default().setBadgeImage(NSImage(named: NSImage.colorPanelName)!, label: "Status One" , forBadgeIdentifier: "One")
         FIFinderSyncController.default().setBadgeImage(NSImage(named: NSImage.cautionName)!, label: "Status Two", forBadgeIdentifier: "Two")
 
-        DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.foldersChanged(_:)), name: NSNotification.Name("FoldersChanged"), object: nil)
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.foldersChanged(_:)), name: NSNotification.Name(UnderPillowXPC.NotificationFoldersChanged), object: nil)
+    }
+   
+    func getFoldersFromJSONSettingsAndRefreshFolderURLs( jsonString: String )
+    {
+        if let data = jsonString.data(using: .utf8) {
+                if let foldersSettings: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
+                    let folderPaths: [String] = foldersSettings[UnderPillowXPC.keyFolderSettings] as? [String] ?? []
+                    self.refreshFolderURLsFrom(folderPaths: folderPaths)
+                }
+            }
+
     }
     
     func refreshFolderURLsFrom( folderPaths: [String] )
@@ -55,19 +62,14 @@ class FinderSync: FIFinderSync {
     }
     
     deinit {
-            DistributedNotificationCenter.default().removeObserver(self, name: NSNotification.Name("FoldersChanged"), object: nil)
+            DistributedNotificationCenter.default().removeObserver(self, name: NSNotification.Name(UnderPillowXPC.NotificationFoldersChanged), object: nil)
     }
     
     @objc func foldersChanged(_ notification: Notification ) {
 
         let folderSettingsJSON: String = notification.object as! String
+        self.getFoldersFromJSONSettingsAndRefreshFolderURLs( jsonString:folderSettingsJSON );
         
-        if let data = folderSettingsJSON.data(using: .utf8) {
-                if let foldersSettings: NSDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary ?? [:] {
-                    let folderPaths: [String] = foldersSettings[UnderPillowXPC.keyFolderSettings] as? [String] ?? []
-                    self.refreshFolderURLsFrom(folderPaths: folderPaths)
-                }
-            }
     }
     
     

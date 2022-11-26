@@ -21,5 +21,6 @@ A macOS Finder right-click menu extension that displays diffusion metadata (usua
 # TODO
 - Make "Launch UnderPillow" item work
 - Don't display errors on the menu
+- Add option to remove folders
 - Support more PNG data formats
 - Drop python requirement

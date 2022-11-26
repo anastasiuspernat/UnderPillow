@@ -13,6 +13,7 @@ import Foundation
 class UnderPillowXPC: NSObject, UnderPillowXPCProtocol {
     
     static let keyFolderSettings = "folderSettings"
+    static let NotificationFoldersChanged = "FoldersChanged"
     static let myServiceName = "Crispy-Driven-Pixels.UnderPillowXPC"
 
     override init() {

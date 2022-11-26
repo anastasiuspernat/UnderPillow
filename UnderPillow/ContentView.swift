@@ -107,7 +107,7 @@ struct ContentView: View {
                                         print("Response from XPC service(2):", response)
                                     }
 
-                                    DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("FoldersChanged"), object: theJSONText, userInfo: nil, options: [.deliverImmediately])
+                                    DistributedNotificationCenter.default().postNotificationName(NSNotification.Name(UnderPillowXPC.NotificationFoldersChanged), object: theJSONText, userInfo: nil, options: [.deliverImmediately])
                                 }
                             }
                         } else {
