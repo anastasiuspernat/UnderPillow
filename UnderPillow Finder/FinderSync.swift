@@ -20,14 +20,9 @@ class FinderSync: FIFinderSync {
         
         FIFinderSyncController.default().directoryURLs = []
 
-        let connection = NSXPCConnection(serviceName: UnderPillowXPC.myServiceName)
-        connection.remoteObjectInterface = NSXPCInterface(with: UnderPillowXPCProtocol.self)
-        connection.resume()
-        let service = connection.remoteObjectProxyWithErrorHandler { error in
-            NSLog("Received error: \(error)")
-        } as? UnderPillowXPCProtocol
+        let service = UnderPillowXPC.getService()
 
-        service?.getFolders() { response in
+        service.getFolders() { response in
             
             self.getFoldersFromJSONSettingsAndRefreshFolderURLs(jsonString: response)
             
