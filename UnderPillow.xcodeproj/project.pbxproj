@@ -92,6 +92,7 @@
 		DD180E38291AD38500E23D59 /* UnderPillowXPCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderPillowXPCDelegate.swift; sourceTree = "<group>"; };
 		DD180E3A291AD38500E23D59 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		DD180E3C291AD38500E23D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD428DD829355C4300743250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DDF189FE2919D4A700BC2201 /* UnderPillow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnderPillow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF18A012919D4A700BC2201 /* UnderPillowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderPillowApp.swift; sourceTree = "<group>"; };
 		DDF18A032919D4A700BC2201 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 		DDF18A002919D4A700BC2201 /* UnderPillow */ = {
 			isa = PBXGroup;
 			children = (
+				DD428DD829355C4300743250 /* Info.plist */,
 				DDF18A012919D4A700BC2201 /* UnderPillowApp.swift */,
 				DDF18A032919D4A700BC2201 /* ContentView.swift */,
 				DDF18A052919D4AA00BC2201 /* Assets.xcassets */,
@@ -569,6 +571,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UnderPillow/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -600,6 +603,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UnderPillow/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

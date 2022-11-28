@@ -211,15 +211,9 @@ class FinderSync: FIFinderSync {
     }
 
     @IBAction func launchUnderPillow(_ sender: AnyObject?) {
-        let target = FIFinderSyncController.default().targetedURL()
-        let items = FIFinderSyncController.default().selectedItemURLs()
-        
-        let item = sender as! NSMenuItem
 
-        NSLog("### launchUnderPillow: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
-        for obj in items! {
-            NSLog("    %@", obj.path as NSString)
-        }
+        NSWorkspace.shared.open(URL(string:"underpillow://")!)
+
     }
 
     @IBAction func copyMenuToClipboard(_ sender: AnyObject?) {
