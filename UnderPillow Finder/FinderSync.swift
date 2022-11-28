@@ -124,9 +124,19 @@ class FinderSync: FIFinderSync {
     override func menu(for menuKind: FIMenuKind) -> NSMenu? {
         // Produce a menu for the extension.
         
+
         if (menuKind == .toolbarItemMenu) {
             let menu = NSMenu(title: "")
-            menu.addItem(withTitle: "Add folder to UnderPillow", action: #selector(addToUnderPillow(_:)), keyEquivalent: "")
+            if let target = FIFinderSyncController.default().targetedURL() {
+                let existingPaths = folderUrls.compactMap { $0.path }
+                let currentPath = target.path
+                if existingPaths.contains(currentPath) {
+                    let item = menu.addItem(withTitle: "Folder in UnderPillow", action: nil, keyEquivalent: "")
+                    item.isEnabled = false
+                } else {
+                    menu.addItem(withTitle: "Add folder to UnderPillow", action: #selector(addToUnderPillow(_:)), keyEquivalent: "")
+                }
+            }
             menu.addItem(withTitle: "Launch UnderPillow", action: #selector(launchUnderPillow(_:)), keyEquivalent: "")
             return menu
         } else
