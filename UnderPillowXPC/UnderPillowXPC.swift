@@ -69,7 +69,7 @@ class UnderPillowXPC: NSObject, UnderPillowXPCProtocol {
 //        {
 //        }
 
-        let UnderPillow: String = shell("python -c 'import sys; from PIL import Image; image = Image.open(\"\(filePath)\"); textinfo = image.text[\"parameters\"]; print (textinfo);'")
+        let UnderPillow: String = shell("python -c 'import sys; from PIL import Image; image = Image.open(\"\(filePath)\"); textinfo = image.text[\"parameters\"] if \"parameters\" in image.text else image.text[\"Dream\"]; print (textinfo);'")
         reply(UnderPillow)
     }
 
