@@ -21,6 +21,5 @@ A macOS Finder right-click menu extension that displays diffusion metadata (usua
 # TODO
 - Refresh folder in the app when added folders via Finder toolbar item
 - Don't display errors on the menu
-- Add option to remove folders
 - Support more PNG data formats
 - Drop python requirement

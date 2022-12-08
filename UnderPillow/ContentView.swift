@@ -15,17 +15,17 @@ struct names {
 
 @MainActor public class ListViewModel: ObservableObject {
   @Published var items: [String] = []
-  @State var selectKeeper = Set<String>()
 }
 
 struct ContentView: View {
+    @State var selectKeeper = Set<String>()
     @State var removeButtonDisabled = false
     @ObservedObject var viewModel = ListViewModel()
 
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                List(viewModel.items, id: \.self, selection: $viewModel.selectKeeper){ name in
+                List(viewModel.items, id: \.self, selection: $selectKeeper){ name in
                     Text(name)
                 }
                     .onAppear{
@@ -63,12 +63,15 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 5)
                 Button(action: {
-                    viewModel.selectKeeper.forEach { item in
+                    
+                    selectKeeper.forEach { item in
                         viewModel.items.removeAll(where: { $0 == item })
                             }
+                    setFoldersFromList()
+                    
                 }, label: {
                     Text("Remove")
-                })
+                }) // Button
                     .disabled(removeButtonDisabled)
             } // VStack
                 .padding(.bottom, 10)
@@ -96,24 +99,8 @@ struct ContentView: View {
                             if (viewModel.items.firstIndex(where: {$0 == newPath}) == nil) {
                                 
                                 viewModel.items.append(newPath!)
-                                    
-                                let service = UnderPillowXPC.getService()
-
-                                let foldersStringsDict: NSMutableDictionary = [UnderPillowXPC.keyFolderSettings:viewModel.items]
                                 
-                                if let theJSONData = try? JSONSerialization.data(
-                                    withJSONObject: foldersStringsDict,
-                                    options: []) {
-
-                                        let theJSONText = String(data: theJSONData,
-                                                               encoding: .utf8)
-
-                                    service.setFolders( theJSONText! ) { response in
-                                        print("Response from XPC service(2):", response)
-                                    }
-
-                                    DistributedNotificationCenter.default().postNotificationName(NSNotification.Name(UnderPillowXPC.NotificationFoldersChanged), object: theJSONText, userInfo: nil, options: [.deliverImmediately])
-                                }
+                                setFoldersFromList()
                             }
                         } else {
                             // User clicked on "Cancel"
@@ -139,6 +126,28 @@ struct ContentView: View {
             }
         }
     }
+    
+    func setFoldersFromList() {
+        
+        let service = UnderPillowXPC.getService()
+
+        let foldersStringsDict: NSMutableDictionary = [UnderPillowXPC.keyFolderSettings:viewModel.items]
+        
+        if let theJSONData = try? JSONSerialization.data(
+            withJSONObject: foldersStringsDict,
+            options: []) {
+
+                let theJSONText = String(data: theJSONData,
+                                       encoding: .utf8)
+
+            service.setFolders( theJSONText! ) { response in
+                print("Response from XPC service(2):", response)
+            }
+
+            DistributedNotificationCenter.default().postNotificationName(NSNotification.Name(UnderPillowXPC.NotificationFoldersChanged), object: theJSONText, userInfo: nil, options: [.deliverImmediately])
+        }
+    }
+
 }
 
 
