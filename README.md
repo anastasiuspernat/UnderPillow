@@ -19,6 +19,7 @@ A macOS Finder right-click menu extension that displays diffusion metadata (usua
 - You can now use new Finder's UnderPillow toolbar item to add folders to UnderPillow
 
 # TODO
+- Add comments to the code
 - Refresh folder in the app when added folders via Finder toolbar item
 - Don't display errors on the menu
 - Support more PNG data formats
